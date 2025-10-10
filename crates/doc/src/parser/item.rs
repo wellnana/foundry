@@ -1,4 +1,5 @@
 use crate::{Comments, solang_ext::SafeUnwrap};
+use itertools::Itertools;
 use solang_parser::pt::{
     ContractDefinition, ContractTy, EnumDefinition, ErrorDefinition, EventDefinition,
     FunctionDefinition, StructDefinition, TypeDefinition, VariableDefinition,
@@ -181,7 +182,6 @@ impl ParseSource {
                         func.params
                             .iter()
                             .map(|p| p.1.as_ref().map(|p| p.ty.to_string()).unwrap_or_default())
-                            .collect::<Vec<_>>()
                             .join(",")
                     )
                 } else {
